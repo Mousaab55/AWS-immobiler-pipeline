@@ -53,7 +53,5 @@ The project works on real estate listings with columns like:
 - **Lambda triggers:** Ensure S3 PUT event triggers are configured correctly to invoke your Lambda function on every new upload.  
 - **CloudFormation for reproducibility:** Define all IAM roles, Glue crawlers, and permissions in CloudFormation templates to easily reproduce the pipeline across environments.  
 - **Validate templates:** Always run `aws cloudformation validate-template` before deploying a stack to catch errors early.  
-- **Data cleaning:** Use Athena or preprocessing scripts to handle inconsistent or malformed data before casting to numeric types, especially for prices or areas.  
 - **Use Parquet format:** Store datasets in Parquet to optimize Athena query performance and reduce scanning costs.  
-
 - **SNS notifications:** When using SNS for automated notifications, ensure the topic is subscribed to by the intended recipients (email or other endpoints) and confirm the subscription before relying on alerts.  
