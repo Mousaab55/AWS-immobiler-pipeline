@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Glue Crawler for Immobilier dataset
+
+Resources:
+  ImmobilierGlueRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: glue.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      RoleName: ImmobilierGlueRole
+
+  ImmobilierGlueDatabase:
+    Type: AWS::Glue::Database
+    Properties:
+      CatalogId: !Ref AWS::AccountId
+      DatabaseInput:
+        Name: immobilier_db
+
+  ImmobilierGlueCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Role: !GetAtt ImmobilierGlueRole.Arn
+      DatabaseName: !Ref ImmobilierGlueDatabase
+      Targets:
+        S3Targets:
+          - Path: s3://immobilier-dataset/
+      SchemaChangePolicy:
+        UpdateBehavior: UPDATE_IN_DATABASE
+        DeleteBehavior: DEPRECATE_IN_DATABASE
+      Name: cfn-crawler-immobilier
