@@ -16,7 +16,7 @@ It’s basically a **hands-off, self-updating real estate data lake**, perfect f
 ## Architecture
 The pipeline uses the following AWS services:  
 
-- **S3:** Storage for raw datasets and Parquet outputs  
+- **S3:** Storage for raw datasets
 - **Glue:** Crawlers to infer schema and catalog datasets  
 - **Athena:** Query datasets directly using SQL  
 - **Lambda + SNS:** Event-driven notifications on new uploads  
@@ -28,7 +28,7 @@ The pipeline uses the following AWS services:
 
 ## Dataset
 The project works on real estate listings with columns like:  
-`titre, prix, surface, localisation, chambres, salles_bain, source`  
+`titre, prix, surface, chambres, salles_bain, source, garage, terrassse`  
 
 
 ---
@@ -52,6 +52,6 @@ The project works on real estate listings with columns like:
 - **Avoid parasitic tables:** Glue crawlers may create extra “parasitic tables” if multiple files or folders exist in your S3 bucket. Consider separating raw uploads and Athena query results into different S3 prefixes or buckets.  
 - **Lambda triggers:** Ensure S3 PUT event triggers are configured correctly to invoke your Lambda function on every new upload.  
 - **CloudFormation for reproducibility:** Define all IAM roles, Glue crawlers, and permissions in CloudFormation templates to easily reproduce the pipeline across environments.  
-- **Validate templates:** Always run `aws cloudformation validate-template` before deploying a stack to catch errors early.  
+- **Validate templates:** Always run `aws cloudformation validate-template` before deploying a stack.
 - **Use Parquet format:** Store datasets in Parquet to optimize Athena query performance and reduce scanning costs.  
 - **SNS notifications:** When using SNS for automated notifications, ensure the topic is subscribed to by the intended recipients (email or other endpoints) and confirm the subscription before relying on alerts.  
