@@ -35,8 +35,7 @@ The project works on real estate listings with columns like:
 ## Main Tasks
 
 - **Task 1 – Configure AWS Glue Crawler:**  
-  Set up a crawler to scan the S3 bucket, detect schema, and register metadata in AWS Glue Data Catalog. Modified schema to include a new computed column: `prix_m2`.
-
+  Set up a crawler to scan the S3 bucket, detect schema, and register metadata in AWS Glue Data Catalog. 
 - **Task 2 – Query and Validate Data with Athena:**   
   Configured an S3 bucket to store Athena query results, previewed the Glue-inferred table, and verified data integrity before analysis.
 
@@ -47,7 +46,7 @@ The project works on real estate listings with columns like:
   Built a Lambda that triggers on S3 upload events, runs the crawler, and sends notifications to subscribed users (e.g., Finance) through Amazon SNS.
 
 - **Task 5 – Simulate Multi-User Access with IAM Roles:**  
-  Tested different users (Finance, Admin) by exporting AWS credent
+  Tested different users by exporting AWS credent
 
 ## Steps / Workflow
 
