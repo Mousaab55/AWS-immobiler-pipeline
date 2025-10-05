@@ -1,12 +1,12 @@
 # AWS immobilier Pipeline
 
 ## Overview
-Inspired by my internship experience working with real estate datasets, I built a **serverless AWS pipeline** that automatically cleans, catalogs, and analyzes property data.  
+Inspired by my internship experience working with real estate dataset that i have scraped, I built a **serverless AWS pipeline** that automatically cleans, catalogs, and analyzes property data.  
 
 Whenever a new dataset lands in S3, the pipeline:  
 - **Infers the schema** with AWS Glue crawlers  
 - **Transforms and enriches** the data (e.g., calculating price per m²)  
-- **Notifies stakeholders** automatically via Lambda + SNS  
+- **Notifies users** automatically via Lambda + SNS  
 - Makes data **ready for analysis** in Athena  
 
 It’s basically a **hands-off, self-updating real estate data lake**, perfect for multi-department use and scalable analytics.
@@ -36,12 +36,12 @@ The project works on real estate listings with columns like:
 ## Steps / Workflow
 
 1. **Upload dataset to S3** → triggers Lambda  
-2. **Lambda publishes a message to SNS** and optionally starts the Glue crawler  
+2. **Lambda publishes a message to SNS** and starts the Glue crawler  
 3. **CloudFormation templates** deploy IAM roles for secure access:  
    - Lambda execution role  
    - Glue crawler role  
    - users   
-4. **Glue crawler** infers schema, updates the catalog, and converts data to Parquet  
+4. **Glue crawler** infers schema, updates the catalog,  
 5. **Athena queries** the tables for analytics.  
 
 ---
