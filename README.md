@@ -45,7 +45,7 @@ The project works on real estate listings with columns like:
 5. **Athena queries** the tables for analytics.  
 
 ---
-![Messgae de SNS](C:\Users\HP\Pictures\Screenshots\Capture d'écran 2025-10-05 210913.png)
+
 
 ## Tips
 
